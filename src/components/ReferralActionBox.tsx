@@ -129,28 +129,16 @@ export const ReferralActionBox: React.FC<ReferralActionBoxProps> = ({ offer }) =
               </button>
             </div>
 
-            <div className="pt-1">
-              <a
-                href={offer.officialSiteUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl text-white font-semibold text-sm transition-all shadow-xs hover:opacity-95 cursor-pointer"
-                style={{ backgroundColor: offer.theme.primary }}
-              >
-                <span>Accéder à la souscription officielle {offer.name}</span>
-                <ExternalLink className="w-4 h-4" />
-              </a>
-              <p className="text-[11px] text-stone-400 text-center mt-2">
-                Demandez votre code en 1 clic puis collez-le lors de votre inscription pour débloquer les {offer.maxBonus}€.
-              </p>
-            </div>
+            <p className="text-[11px] text-stone-500 text-center pt-1 italic">
+              Le code personnalisé et le lien vous seront envoyés directement par SMS ou WhatsApp en moins de 5 minutes.
+            </p>
           </div>
         ) : (
           /* Fixed Code (BoursoBank & Fortuneo) */
           <div className="space-y-4">
             <div>
               <div className="flex items-center justify-between text-xs text-stone-500 mb-1.5">
-                <span>Code à coller dans le formulaire d'inscription :</span>
+                <span>Code à copier et reporter dans le formulaire :</span>
                 <button
                   type="button"
                   onClick={() => setIsEditing(!isEditing)}
@@ -215,12 +203,19 @@ export const ReferralActionBox: React.FC<ReferralActionBoxProps> = ({ offer }) =
                 className="w-full inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl text-white font-semibold text-sm transition-all shadow-xs hover:opacity-95 cursor-pointer"
                 style={{ backgroundColor: offer.theme.primary }}
               >
-                <span>Souscrire sur {offer.name} avec ce code ({offer.defaultReferralCode})</span>
+                <span>Accéder au site de souscription {offer.name}</span>
                 <ExternalLink className="w-4 h-4" />
               </a>
-              <p className="text-[11px] text-stone-400 text-center mt-2">
-                Le lien intègre directement le code parrain <strong>{offer.defaultReferralCode}</strong> pour garantir votre prime de {offer.maxBonus}€.
-              </p>
+
+              {offer.id === 'fortuneo' ? (
+                <div className="mt-2.5 p-3 rounded-xl bg-amber-50/80 border border-amber-200 text-amber-900 text-xs leading-relaxed text-left">
+                  <strong>Important pour Fortuneo :</strong> Le lien ne remplit pas le code automatiquement. Vous devez <u>impérativement coller ou saisir vous-même</u> le code parrain <strong>{offer.defaultReferralCode}</strong> dans le champ « Code parrain / avantage » lors de votre souscription pour que votre prime (70€ ou 130€) soit prise en compte.
+                </div>
+              ) : (
+                <p className="text-[11px] text-stone-400 text-center mt-2">
+                  Le lien officiel BoursoBank intègre le code <strong>{offer.defaultReferralCode}</strong> pour valider votre prime.
+                </p>
+              )}
             </div>
           </div>
         )}

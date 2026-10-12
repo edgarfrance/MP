@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { X, ExternalLink, Maximize2, ShieldCheck, CheckCircle2, Clock, AlertCircle } from 'lucide-react';
 import { BankOffer } from '../data/offers';
 import { BoursoSimulator } from './BoursoSimulator';
-import { SGSimulator } from './SGSimulator';
 import { CASimulator } from './CASimulator';
 import { FortuneoSimulator } from './FortuneoSimulator';
 import { ReferralActionBox } from './ReferralActionBox';
@@ -100,24 +99,23 @@ export const BankModal: React.FC<BankModalProps> = ({
 
         {/* Modal Scrollable Body */}
         <div className="p-6 sm:p-8 space-y-8 max-h-[75vh] overflow-y-auto">
-          {/* Bank-Specific Interactive Simulator */}
-          <section>
-            <div className="text-xs font-bold uppercase tracking-wider text-stone-400 mb-3">
-              1. Simulation en direct
-            </div>
-            {offer.id === 'boursobank' && (
-              <BoursoSimulator brandColor={offer.theme.primary} />
-            )}
-            {offer.id === 'sg' && (
-              <SGSimulator brandColor={offer.theme.primary} />
-            )}
-            {offer.id === 'credit-agricole' && (
-              <CASimulator brandColor={offer.theme.primary} />
-            )}
-            {offer.id === 'fortuneo' && (
-              <FortuneoSimulator brandColor={offer.theme.primary} />
-            )}
-          </section>
+          {/* Bank-Specific Interactive Simulator (omitted for SG) */}
+          {offer.id !== 'sg' && (
+            <section>
+              <div className="text-xs font-bold uppercase tracking-wider text-stone-400 mb-3">
+                1. Simulation en direct
+              </div>
+              {offer.id === 'boursobank' && (
+                <BoursoSimulator brandColor={offer.theme.primary} />
+              )}
+              {offer.id === 'credit-agricole' && (
+                <CASimulator brandColor={offer.theme.primary} />
+              )}
+              {offer.id === 'fortuneo' && (
+                <FortuneoSimulator brandColor={offer.theme.primary} />
+              )}
+            </section>
+          )}
 
           {/* Referral Box & Activation */}
           <section>

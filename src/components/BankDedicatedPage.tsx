@@ -16,7 +16,6 @@ import {
 } from 'lucide-react';
 import { BankOffer } from '../data/offers';
 import { BoursoSimulator } from './BoursoSimulator';
-import { SGSimulator } from './SGSimulator';
 import { CASimulator } from './CASimulator';
 import { FortuneoSimulator } from './FortuneoSimulator';
 import { ReferralActionBox } from './ReferralActionBox';
@@ -175,16 +174,30 @@ export const BankDedicatedPage: React.FC<BankDedicatedPageProps> = ({
                 </div>
               </div>
 
-              <a
-                href={offer.officialSiteUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-6 w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-white font-semibold text-xs sm:text-sm transition-all hover:opacity-95"
-                style={{ backgroundColor: offer.theme.primary }}
-              >
-                <span>Souscrire sur {offer.shortName}</span>
-                <ExternalLink className="w-4 h-4" />
-              </a>
+              {offer.isSingleUseCode ? (
+                <a
+                  href={`https://wa.me/33768059063?text=${encodeURIComponent(
+                    `Bonjour, je souhaite recevoir mon code de parrainage individuel pour ${offer.name} svp.`
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-6 w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-white font-semibold text-xs sm:text-sm transition-all hover:opacity-95"
+                  style={{ backgroundColor: offer.theme.primary }}
+                >
+                  <span>Demander mon code par WhatsApp / SMS</span>
+                </a>
+              ) : (
+                <a
+                  href={offer.officialSiteUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-6 w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-white font-semibold text-xs sm:text-sm transition-all hover:opacity-95"
+                  style={{ backgroundColor: offer.theme.primary }}
+                >
+                  <span>Accéder à la souscription {offer.shortName}</span>
+                  <ExternalLink className="w-4 h-4" />
+                </a>
+              )}
             </div>
           </div>
         </div>
@@ -192,33 +205,36 @@ export const BankDedicatedPage: React.FC<BankDedicatedPageProps> = ({
 
       {/* Main Content Body */}
       <main className="max-w-6xl mx-auto px-4 sm:px-6 pt-10 sm:pt-14 space-y-12">
-        {/* Section 1: The Interactive Simulator */}
-        <section>
-          <div className="flex items-center justify-between mb-4">
-            <div>
-              <h2 className="text-xl sm:text-2xl font-bold text-stone-900 tracking-tight">
-                1. Simulateur en direct pour {offer.name}
-              </h2>
-              <p className="text-sm text-stone-500 mt-0.5">
-                Calculez le montant exact versé selon votre situation.
-              </p>
+        {/* Section 1: Simulator (shown for BoursoBank, Crédit Agricole, Fortuneo, omitted for SG) */}
+        {offer.id !== 'sg' && (
+          <section>
+            <div className="flex items-center justify-between mb-4">
+              <div>
+                <h2 className="text-xl sm:text-2xl font-bold text-stone-900 tracking-tight">
+                  1. Simulateur en direct pour {offer.name}
+                </h2>
+                <p className="text-sm text-stone-500 mt-0.5">
+                  Calculez le montant exact versé selon votre situation.
+                </p>
+              </div>
             </div>
-          </div>
 
-          {offer.id === 'boursobank' && <BoursoSimulator brandColor={offer.theme.primary} />}
-          {offer.id === 'sg' && <SGSimulator brandColor={offer.theme.primary} />}
-          {offer.id === 'credit-agricole' && <CASimulator brandColor={offer.theme.primary} />}
-          {offer.id === 'fortuneo' && <FortuneoSimulator brandColor={offer.theme.primary} />}
-        </section>
+            {offer.id === 'boursobank' && <BoursoSimulator brandColor={offer.theme.primary} />}
+            {offer.id === 'credit-agricole' && <CASimulator brandColor={offer.theme.primary} />}
+            {offer.id === 'fortuneo' && <FortuneoSimulator brandColor={offer.theme.primary} />}
+          </section>
+        )}
 
-        {/* Section 2: Copy Code & Quick Action Box */}
+        {/* Section 2: Code Parrain & Action Box */}
         <section>
           <div className="mb-4">
             <h2 className="text-xl sm:text-2xl font-bold text-stone-900 tracking-tight">
-              2. Code parrain officiel & Activation
+              {offer.id === 'sg' ? '1.' : '2.'} {offer.isSingleUseCode ? 'Code parrain individuel & Contact immédiat' : 'Code parrain officiel & Activation'}
             </h2>
             <p className="text-sm text-stone-500 mt-0.5">
-              Copiez ce code pour vous assurer de recevoir la prime lors de l'ouverture du compte.
+              {offer.isSingleUseCode
+                ? 'Contactez-nous pour recevoir votre code nominatif valide avant d\'ouvrir votre compte.'
+                : 'Utilisez ce code pour vous assurer de recevoir votre prime lors de l\'inscription.'}
             </p>
           </div>
           <ReferralActionBox offer={offer} />
