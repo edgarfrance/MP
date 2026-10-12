@@ -1,0 +1,75 @@
+import React from 'react';
+import { ShieldCheck } from 'lucide-react';
+
+interface FooterProps {
+  onGoHome: () => void;
+  onOpenBank: (id: string) => void;
+}
+
+export const Footer: React.FC<FooterProps> = ({ onGoHome, onOpenBank }) => {
+  return (
+    <footer className="border-t border-stone-200 bg-white text-stone-600 text-xs py-12">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-8 border-b border-stone-100">
+          <div>
+            <div
+              onClick={onGoHome}
+              className="flex items-center gap-2 cursor-pointer font-bold text-base text-stone-900"
+            >
+              <div className="w-6 h-6 rounded bg-stone-900 text-white flex items-center justify-center font-extrabold text-xs">
+                MP
+              </div>
+              <span>meilleurparrainage.com</span>
+            </div>
+            <p className="text-stone-400 mt-1 max-w-md">
+              Comparateur indépendant des offres de parrainage et primes bancaires en France.
+            </p>
+          </div>
+
+          <div className="flex flex-wrap gap-4 text-xs">
+            <button
+              type="button"
+              onClick={() => onOpenBank('boursobank')}
+              className="text-stone-600 hover:text-stone-900 transition-colors"
+            >
+              Parrainage BoursoBank
+            </button>
+            <button
+              type="button"
+              onClick={() => onOpenBank('sg')}
+              className="text-stone-600 hover:text-stone-900 transition-colors"
+            >
+              Parrainage SG
+            </button>
+            <button
+              type="button"
+              onClick={() => onOpenBank('credit-agricole')}
+              className="text-stone-600 hover:text-stone-900 transition-colors"
+            >
+              Parrainage Crédit Agricole NA
+            </button>
+            <button
+              type="button"
+              onClick={() => onOpenBank('fortuneo')}
+              className="text-stone-600 hover:text-stone-900 transition-colors"
+            >
+              Parrainage Fortuneo
+            </button>
+          </div>
+        </div>
+
+        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-stone-400 text-[11px]">
+          <div className="flex items-center gap-1.5">
+            <ShieldCheck className="w-3.5 h-3.5 text-stone-400" />
+            <span>
+              meilleurparrainage.com n'est pas un établissement bancaire. Informations fournies à titre indicatif selon les conditions en vigueur.
+            </span>
+          </div>
+          <div>
+            © {new Date().getFullYear()} meilleurparrainage.com • Tous droits réservés.
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+};
