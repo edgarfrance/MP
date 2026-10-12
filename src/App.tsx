@@ -51,10 +51,6 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleSelectOfferModal = (offer: BankOffer) => {
-    setSelectedModalOffer(offer);
-  };
-
   // If a dedicated bank page route is active, render that bank's page
   const activeDedicatedOffer = BANK_OFFERS.find((o) => o.slug === currentRoute);
 
@@ -82,20 +78,20 @@ export default function App() {
       <Hero />
 
       {/* Main landing container */}
-      <main className="flex-1 max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-14 space-y-14 w-full">
+      <main className="flex-1 max-w-6xl mx-auto px-3.5 sm:px-6 py-6 sm:py-14 space-y-8 sm:space-y-14 w-full">
         {/* Section 1: The Requested "carrés (bulles) avec les offres à l'intérieur" */}
         <section id="offres">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 mb-6">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-1.5 sm:gap-2 mb-4 sm:mb-6">
             <div>
-              <div className="text-xs font-bold uppercase tracking-wider text-stone-400 mb-1">
+              <div className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-stone-400 mb-0.5 sm:mb-1">
                 Sélection 2026
               </div>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-stone-900 tracking-tight">
+              <h2 className="text-xl sm:text-3xl font-extrabold text-stone-900 tracking-tight leading-snug">
                 Les offres de parrainage du moment
               </h2>
             </div>
             <p className="text-xs text-stone-500 max-w-xs sm:text-right">
-              Cliquez sur un carré pour accéder directement à la page dédiée de la banque.
+              Cliquez sur une offre pour accéder à sa page dédiée.
             </p>
           </div>
 
@@ -115,14 +111,14 @@ export default function App() {
         </section>
 
         {/* Section 3: Meilleure offre du moment (BoursoBank) */}
-        <section id="meilleure-offre" className="pt-2">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 mb-6">
+        <section id="meilleure-offre" className="pt-1 sm:pt-2">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-1.5 sm:gap-2 mb-4 sm:mb-6">
             <div>
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-pink-50 text-pink-700 border border-pink-100 mb-2">
-                <Sparkles className="w-3.5 h-3.5 text-pink-600" />
-                Meilleure offre du moment
+              <div className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-full text-[10px] sm:text-xs font-bold bg-pink-50 text-pink-700 border border-pink-100 mb-2">
+                <Sparkles className="w-3.5 h-3.5 text-pink-600 shrink-0" />
+                <span>Meilleure offre du moment</span>
               </div>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-stone-900 tracking-tight">
+              <h2 className="text-xl sm:text-3xl font-extrabold text-stone-900 tracking-tight leading-snug">
                 Meilleure offre du moment • BoursoBank (jusqu'à 320 €)
               </h2>
             </div>
@@ -149,7 +145,7 @@ export default function App() {
         }}
       />
 
-      {/* The Requested Modal Window displaying specific conditions */}
+      {/* Modal Window fallback */}
       <BankModal
         offer={selectedModalOffer}
         onClose={() => setSelectedModalOffer(null)}

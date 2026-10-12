@@ -28,16 +28,16 @@ export const FAQSection: React.FC = () => {
   ];
 
   return (
-    <section className="bg-white border border-stone-200 rounded-2xl p-6 sm:p-8 shadow-xs">
-      <div className="flex items-center gap-3 mb-6">
-        <div className="w-9 h-9 rounded-xl bg-stone-100 flex items-center justify-center text-stone-700">
-          <HelpCircle className="w-5 h-5" />
+    <section className="bg-white border border-stone-200 rounded-2xl p-4 sm:p-8 shadow-xs">
+      <div className="flex items-center gap-2.5 sm:gap-3 mb-4 sm:mb-6">
+        <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-stone-100 flex items-center justify-center text-stone-700 shrink-0">
+          <HelpCircle className="w-4 h-4 sm:w-5 sm:h-5" />
         </div>
         <div>
-          <h3 className="text-xl font-bold text-stone-900 tracking-tight">
+          <h3 className="text-lg sm:text-xl font-bold text-stone-900 tracking-tight leading-snug">
             Foire Aux Questions (F.A.Q.)
           </h3>
-          <p className="text-xs text-stone-500">
+          <p className="text-[11px] sm:text-xs text-stone-500">
             Toutes les réponses pour toucher vos primes en toute sérénité.
           </p>
         </div>
@@ -47,11 +47,11 @@ export const FAQSection: React.FC = () => {
         {faqs.map((faq, idx) => {
           const isOpen = openIndex === idx;
           return (
-            <div key={idx} className="py-3.5">
+            <div key={idx} className="py-3 sm:py-3.5">
               <button
                 type="button"
                 onClick={() => setOpenIndex(isOpen ? null : idx)}
-                className="w-full flex items-center justify-between text-left gap-4 font-semibold text-sm sm:text-base text-stone-900 hover:text-stone-700 transition-colors cursor-pointer"
+                className="w-full flex items-center justify-between text-left gap-3 font-semibold text-xs sm:text-base text-stone-900 hover:text-stone-700 transition-colors cursor-pointer leading-snug"
               >
                 <span>{faq.q}</span>
                 <ChevronDown
@@ -61,7 +61,7 @@ export const FAQSection: React.FC = () => {
                 />
               </button>
               {isOpen && (
-                <p className="mt-2 text-xs sm:text-sm text-stone-600 leading-relaxed pr-6 animate-in fade-in duration-150">
+                <p className="mt-2 text-xs sm:text-sm text-stone-600 leading-relaxed pr-2 sm:pr-6 animate-in fade-in duration-150">
                   {faq.a}
                 </p>
               )}
