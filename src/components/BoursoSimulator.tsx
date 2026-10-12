@@ -142,29 +142,50 @@ export const BoursoSimulator: React.FC<BoursoSimulatorProps> = ({ brandColor = '
             Détail précis de versement :
           </h4>
 
-          <div className="space-y-2 text-sm">
+          <div className="space-y-2.5 text-sm">
             <div className="flex items-center justify-between py-1 border-b border-stone-100">
               <span className="text-stone-600 flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                Prime d'ouverture instantanée (dépôt {deposit}€) :
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                <span>Prime d'ouverture immédiate (dépôt {deposit}€) :</span>
               </span>
               <span className="font-bold text-stone-900 font-num">{instantBonus} €</span>
             </div>
 
-            <div className="flex items-center justify-between py-1 border-b border-stone-100">
-              <span className="text-stone-600 flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                Prime fidélité (versée au 3<sup>ème</sup> mois) :
-              </span>
-              <span className="font-bold text-stone-900 font-num">+{threeMonthsBonus} €</span>
+            {/* Monthly 80€ breakdown (20€ + 30€ + 30€) */}
+            <div className="py-2 px-3 bg-stone-50 rounded-xl border border-stone-100 space-y-2">
+              <div className="flex items-center justify-between text-xs font-semibold text-stone-700">
+                <span className="flex items-center gap-1.5">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                  Primes d'utilisation de la carte (3 premiers mois) :
+                </span>
+                <span className="font-bold font-num text-stone-900">+80 €</span>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-1 text-xs">
+                <div className="p-2 bg-white rounded-lg border border-stone-200">
+                  <span className="text-stone-400 block text-[11px]">1<sup>er</sup> mois :</span>
+                  <span className="font-extrabold text-stone-900 font-num">+20 €</span>
+                  <span className="text-[10px] text-stone-500 block mt-0.5">Dès 1 paiement (0€ min)</span>
+                </div>
+                <div className="p-2 bg-white rounded-lg border border-stone-200">
+                  <span className="text-stone-400 block text-[11px]">2<sup>ème</sup> mois :</span>
+                  <span className="font-extrabold text-stone-900 font-num">+30 €</span>
+                  <span className="text-[10px] text-stone-500 block mt-0.5">Dès 1 paiement (0€ min)</span>
+                </div>
+                <div className="p-2 bg-white rounded-lg border border-stone-200">
+                  <span className="text-stone-400 block text-[11px]">3<sup>ème</sup> mois :</span>
+                  <span className="font-extrabold text-stone-900 font-num">+30 €</span>
+                  <span className="text-[10px] text-stone-500 block mt-0.5">Dès 1 paiement (0€ min)</span>
+                </div>
+              </div>
             </div>
 
             <div className="flex items-center justify-between py-1">
               <span className="text-stone-600 flex items-center gap-2">
                 {hasMobility ? (
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
                 ) : (
-                  <div className="w-4 h-4 rounded-full border border-stone-300" />
+                  <div className="w-4 h-4 rounded-full border border-stone-300 shrink-0" />
                 )}
                 Prime mobilité bancaire EasyMove :
               </span>

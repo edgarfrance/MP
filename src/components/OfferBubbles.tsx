@@ -82,7 +82,7 @@ export const OfferBubbles: React.FC<OfferBubblesProps> = ({
                   <div className="flex items-start gap-1.5">
                     <span className="text-stone-400">•</span>
                     <span className="font-medium text-stone-700">
-                      {offer.id === 'boursobank' && 'Dépôt dès 1€ (jusqu\'à 160€) + 80€'}
+                      {offer.id === 'boursobank' && 'Dépôt dès 1€ (jusqu\'à 160€) + 80€ (20€+30€+30€)'}
                       {offer.id === 'sg' && '0€ de dépôt requis (5 paiements)'}
                       {offer.id === 'credit-agricole' && '50€ sans dépôt + 50€ mobilité'}
                       {offer.id === 'fortuneo' && 'Fosfo 70€ / Gold 130€ (300€ dépôt)'}

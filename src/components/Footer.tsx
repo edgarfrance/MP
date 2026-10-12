@@ -58,6 +58,21 @@ export const Footer: React.FC<FooterProps> = ({ onGoHome, onOpenBank }) => {
           </div>
         </div>
 
+        <div className="py-4 border-b border-stone-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-stone-500">
+          <div className="flex items-center gap-2">
+            <span className="font-semibold text-stone-700">Contact parrainage (CA & SG code unique) :</span>
+            <a href="mailto:contact@meilleurparrainage.com" className="hover:text-stone-900 underline">
+              contact@meilleurparrainage.com
+            </a>
+          </div>
+          <div className="flex items-center gap-3">
+            <span>SMS / WhatsApp :</span>
+            <a href="https://wa.me/33768059063" target="_blank" rel="noopener noreferrer" className="font-semibold text-emerald-700 hover:underline">
+              07 68 05 90 63
+            </a>
+          </div>
+        </div>
+
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-stone-400 text-[11px]">
           <div className="flex items-center gap-1.5">
             <ShieldCheck className="w-3.5 h-3.5 text-stone-400" />

@@ -44,6 +44,13 @@ export interface BankOffer {
   defaultReferralCode?: string;
   referralLinkPlaceholder?: string;
   officialSiteUrl: string;
+  isSingleUseCode?: boolean;
+  contactForCode?: {
+    email: string;
+    phone: string;
+    phoneRaw: string;
+    whatsappText: string;
+  };
 }
 
 export const BANK_OFFERS: BankOffer[] = [
@@ -69,8 +76,9 @@ export const BANK_OFFERS: BankOffer[] = [
       gradientTo: '#9D0054',
     },
     keyPoints: [
-      'Dès 1€ de dépôt (90€ direct + 80€ en 3 mois = 170€)',
+      'Dès 1€ de dépôt (90€ immédiat + 80€ étalés : 20€ M1 + 30€ M2 + 30€ M3 = 170€)',
       'Jusqu\'à 160€ direct avec 300€ de premier versement',
+      'Primes mensuelles : 20€ le 1er mois, 30€ le 2ème, 30€ le 3ème (dès 1 paiement, sans montant minimum)',
       '+80€ supplémentaires avec la mobilité bancaire EasyMove',
       'Carte bancaire Ultim gratuite (0€ de frais de tenue de compte)'
     ],
@@ -95,12 +103,13 @@ export const BANK_OFFERS: BankOffer[] = [
       }
     ],
     mobilityBonus: 80,
-    payoutDelay: 'Immédiat pour la 1ère partie, et sous 90 jours pour le bonus fidélité',
+    payoutDelay: 'Immédiat pour le dépôt, puis 20€ (1er mois), 30€ (2ème mois) et 30€ (3ème mois)',
     requirements: [
       'Être une personne physique majeure résidant fiscalement en France',
       'Ouvrir un compte individuel ou joint pour la 1ère fois chez BoursoBank',
+      'Effectuer 1 paiement par carte chaque mois (sans montant minimum) pour toucher les 20€ + 30€ + 30€',
       'Conserver le compte ouvert au minimum 12 mois',
-      'Effectuer au moins 1 opération de paiement par mois avec la carte (sinon 9€/mois)'
+      'Effectuer au moins 1 opération de paiement par mois avec la carte Ultim pour maintenir la gratuité'
     ],
     steps: [
       {
@@ -116,16 +125,21 @@ export const BANK_OFFERS: BankOffer[] = [
       {
         number: 3,
         title: 'Premier versement (1€, 50€ ou 300€)',
-        desc: 'Effectuez votre premier versement depuis votre compte actuel pour activer le compte et débloquer la prime instantanée.'
+        desc: 'Effectuez votre premier versement pour activer le compte et débloquer immédiatement 90€, 120€ ou 160€ sur votre solde.'
       },
       {
         number: 4,
-        title: 'Mobilité EasyMove (Optionnelle : +80€)',
-        desc: 'En 1 clic dans l\'appli, demandez le transfert d\'au moins un prélèvement pour toucher 80€ de plus.'
+        title: '1 paiement / mois (20€ + 30€ + 30€ = 80€)',
+        desc: 'Faites au moins 1 paiement par mois (même 0,01€, aucun montant minimum imposé) pour toucher 20€ le 1er mois, 30€ le 2ème mois et 30€ le 3ème mois.'
+      },
+      {
+        number: 5,
+        title: 'Mobilité EasyMove (+80€ en option)',
+        desc: 'En 1 clic dans l\'application, transférez au moins un prélèvement pour toucher 80€ de plus.'
       }
     ],
-    defaultReferralCode: 'MPBOURSO320',
-    officialSiteUrl: 'https://www.boursobank.com'
+    defaultReferralCode: 'EDDU9063',
+    officialSiteUrl: 'https://www.boursobank.com/landing/parrainage?code_parrain=EDDU9063'
   },
   {
     id: 'sg',
@@ -151,6 +165,7 @@ export const BANK_OFFERS: BankOffer[] = [
     keyPoints: [
       'Aucun dépôt obligatoire à l\'ouverture du compte',
       '50€ versés directement dès la condition remplie',
+      'Code à usage unique transmis gratuitement par SMS/WhatsApp/Mail',
       'Souscription 100% en ligne (plus simple) ou directement en agence SG',
       'Condition ultra simple : 5 paiements par carte en 3 mois (même 1 centime !)',
       'Grand réseau d\'agences physiques partout en France + appli mobile'
@@ -158,6 +173,7 @@ export const BANK_OFFERS: BankOffer[] = [
     payoutDelay: 'Versé directement sur le compte après exécution des 5 paiements',
     requirements: [
       'Être majeur et ne pas être déjà client de la SG',
+      'Code parrainage à usage unique (demandez-le gratuitement par SMS, WhatsApp ou Mail)',
       'Ouverture possible en ligne (recommandé pour la rapidité) ou en agence physique SG',
       'Réaliser 5 paiements par carte dans les 90 jours (recharges Amazon, boulangerie, horodateur...)',
       'Pas de montant minimum de dépense imposé'
@@ -165,26 +181,33 @@ export const BANK_OFFERS: BankOffer[] = [
     steps: [
       {
         number: 1,
-        title: 'Souscription en ligne ou en agence',
-        desc: 'Ouvrez votre compte en 5 minutes en ligne (le plus simple et rapide), ou rendez-vous dans l\'agence SG la plus proche en transmettant votre code parrain.'
+        title: 'Demandez votre code unique',
+        desc: 'Contactez-nous par SMS/WhatsApp au 07 68 05 90 63 ou mail à contact@meilleurparrainage.com pour recevoir votre code nominatif valide.'
       },
       {
         number: 2,
-        title: 'Réception ou retrait de votre carte',
-        desc: 'Recevez votre carte bancaire Visa par courrier ou récupérez-la en agence. Activez-la sur Apple Pay ou Google Pay.'
+        title: 'Souscription en ligne ou en agence',
+        desc: 'Ouvrez votre compte en 5 minutes en ligne (le plus simple), ou rendez-vous en agence SG en renseignant votre code parrain.'
       },
       {
         number: 3,
-        title: 'Effectuez 5 paiements de votre choix',
-        desc: 'Payez 5 fois un montant symbolique (ex: 0,10€ ou vos achats du quotidien) dans les 3 mois.'
+        title: 'Réception de votre carte & 5 paiements',
+        desc: 'Activez votre carte Visa et effectuez 5 paiements de montant libre (ex: 5x 0,10€) dans les 3 mois.'
       },
       {
         number: 4,
         title: 'Réception directe des 50€',
-        desc: 'La prime de 50€ est créditée automatiquement sur votre compte courant.'
+        desc: 'La prime de 50€ est créditée automatiquement sur votre nouveau compte SG.'
       }
     ],
-    defaultReferralCode: 'MPSG50OFF',
+    isSingleUseCode: true,
+    defaultReferralCode: 'USAGE UNIQUE (SMS/WhatsApp)',
+    contactForCode: {
+      email: 'contact@meilleurparrainage.com',
+      phone: '07 68 05 90 63',
+      phoneRaw: '0768059063',
+      whatsappText: 'Bonjour, je souhaite recevoir un code de parrainage SG (Société Générale) svp.'
+    },
     officialSiteUrl: 'https://particuliers.sg.fr'
   },
   {
@@ -211,6 +234,7 @@ export const BANK_OFFERS: BankOffer[] = [
     keyPoints: [
       '50€ offerts sans aucun dépôt préalable, versés instantanément',
       '+50€ additionnels si vous réalisez la mobilité bancaire',
+      'Code à usage unique transmis gratuitement par SMS/WhatsApp/Mail',
       'Réservé exclusivement aux résidents d\'Aquitaine',
       'Justificatif de domicile obligatoire en Aquitaine'
     ],
@@ -218,14 +242,15 @@ export const BANK_OFFERS: BankOffer[] = [
     payoutDelay: '50€ versés instantanément à l\'ouverture + 50€ après transfert',
     requirements: [
       'Habiter obligatoirement en région Aquitaine (Gironde 33, Landes 40, Lot-et-Garonne 47, Dordogne 24, Pyrénées-Atlantiques 64)',
+      'Code parrainage à usage unique (demandez-le gratuitement par SMS, WhatsApp ou Mail)',
       'Fournir un justificatif de domicile valide de moins de 3 mois',
       'Être une personne physique majeure résidente'
     ],
     steps: [
       {
         number: 1,
-        title: 'Vérifiez votre éligibilité territoriale',
-        desc: 'Assurez-vous de résider en Aquitaine (Gironde, Landes, Lot-et-Garonne, Dordogne, Pyrénées-Atlantiques).'
+        title: 'Demandez votre code unique Aquitaine',
+        desc: 'Contactez-nous par SMS/WhatsApp au 07 68 05 90 63 ou mail à contact@meilleurparrainage.com pour recevoir votre lien/code nominatif.'
       },
       {
         number: 2,
@@ -235,7 +260,7 @@ export const BANK_OFFERS: BankOffer[] = [
       {
         number: 3,
         title: 'Versement instantané des 50€',
-        desc: 'Dès que le dossier est validé, les 50€ sont crédités immédiatement sans aucun versement initial requis.'
+        desc: 'Dès validation de votre dossier, les 50€ sont crédités sans aucun versement initial requis.'
       },
       {
         number: 4,
@@ -243,7 +268,14 @@ export const BANK_OFFERS: BankOffer[] = [
         desc: 'Activez le service d\'aide à la mobilité bancaire pour encaisser 50€ supplémentaires.'
       }
     ],
-    defaultReferralCode: 'MPCA100AQ',
+    isSingleUseCode: true,
+    defaultReferralCode: 'USAGE UNIQUE (SMS/WhatsApp)',
+    contactForCode: {
+      email: 'contact@meilleurparrainage.com',
+      phone: '07 68 05 90 63',
+      phoneRaw: '0768059063',
+      whatsappText: 'Bonjour, je souhaite recevoir un code de parrainage Crédit Agricole Aquitaine svp.'
+    },
     officialSiteUrl: 'https://www.credit-agricole.fr/ca-aquitaine/particulier.html'
   },
   {
@@ -326,8 +358,8 @@ export const BANK_OFFERS: BankOffer[] = [
         desc: 'Votre bonus (70€ ou 130€) est versé presque instantanément sur votre compte courant.'
       }
     ],
-    defaultReferralCode: 'MPFORTUNEO130',
-    officialSiteUrl: 'https://www.fortuneo.fr'
+    defaultReferralCode: '12569618',
+    officialSiteUrl: 'https://www.fortuneo.fr/compte-bancaire/souscrire/choix-type-compte'
   }
 ];
 
