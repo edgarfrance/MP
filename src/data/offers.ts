@@ -76,7 +76,6 @@ export const BANK_OFFERS: BankOffer[] = [
       gradientTo: '#9D0054',
     },
     keyPoints: [
-      'Dès 1€ de dépôt (90€ immédiat + 80€ étalés : 20€ M1 + 30€ M2 + 30€ M3 = 170€)',
       'Jusqu\'à 160€ direct avec 300€ de premier versement',
       'Primes mensuelles : 20€ le 1er mois, 30€ le 2ème, 30€ le 3ème (dès 1 paiement, sans montant minimum)',
       '+80€ supplémentaires avec la mobilité bancaire EasyMove',
