@@ -98,21 +98,16 @@ export const OfferBubbles: React.FC<OfferBubblesProps> = ({
               {/* Bottom Action Footer */}
               <div className="mt-5 pt-3.5 border-t border-stone-100 flex items-center justify-between">
                 <span className="text-xs font-semibold text-stone-800 group-hover:text-stone-950 inline-flex items-center gap-1 transition-colors">
-                  Voir les détails
+                  Accéder à l'offre
                   <ChevronRight className="w-3.5 h-3.5 text-stone-400 group-hover:translate-x-0.5 transition-transform" />
                 </span>
 
-                <button
-                  type="button"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    onOpenFullPage(offer);
-                  }}
-                  className="p-1.5 text-stone-400 hover:text-stone-800 hover:bg-stone-100 rounded-lg transition-colors cursor-pointer"
-                  title="Ouvrir la page dédiée"
+                <div
+                  className="p-1.5 text-stone-400 group-hover:text-stone-800 group-hover:bg-stone-100 rounded-lg transition-colors"
+                  title="Accéder à la page dédiée"
                 >
                   <ArrowUpRight className="w-4 h-4" />
-                </button>
+                </div>
               </div>
             </div>
           );

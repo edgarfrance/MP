@@ -95,26 +95,35 @@ export default function App() {
               </h2>
             </div>
             <p className="text-xs text-stone-500 max-w-xs sm:text-right">
-              Cliquez sur un carré pour ouvrir sa fenêtre détaillée ou sa page dédiée.
+              Cliquez sur un carré pour accéder directement à la page dédiée de la banque.
             </p>
           </div>
 
           <OfferBubbles
             offers={BANK_OFFERS}
-            onSelectOffer={handleSelectOfferModal}
+            onSelectOffer={navigateToDedicatedPage}
             onOpenFullPage={navigateToDedicatedPage}
           />
         </section>
 
-        {/* Section 2: BoursoBank Focus & Interactive Live Simulator */}
-        <section id="simulateur-bourso" className="pt-4">
+        {/* Section 2: Simulateur Multi-Banques direct en dessous des bulles */}
+        <section id="cumul">
+          <CumulativeCalculator
+            offers={BANK_OFFERS}
+            onSelectOffer={navigateToDedicatedPage}
+          />
+        </section>
+
+        {/* Section 3: Meilleure offre du moment (BoursoBank) */}
+        <section id="meilleure-offre" className="pt-2">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 mb-6">
             <div>
-              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-bold bg-pink-50 text-pink-700 border border-pink-100 mb-2">
-                Offre n°1 • BoursoBank
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-pink-50 text-pink-700 border border-pink-100 mb-2">
+                <Sparkles className="w-3.5 h-3.5 text-pink-600" />
+                Meilleure offre du moment
               </div>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-stone-900 tracking-tight">
-                Simulateur en direct BoursoBank
+                Meilleure offre du moment • BoursoBank (jusqu'à 320 €)
               </h2>
             </div>
             <p className="text-xs text-stone-500 max-w-sm sm:text-right">
@@ -123,14 +132,6 @@ export default function App() {
           </div>
 
           <BoursoSimulator brandColor="#E2007A" />
-        </section>
-
-        {/* Section 3: Cumulative Multi-Bank Simulator */}
-        <section id="cumul">
-          <CumulativeCalculator
-            offers={BANK_OFFERS}
-            onSelectOffer={handleSelectOfferModal}
-          />
         </section>
 
         {/* Section 4: Transparent FAQ */}
