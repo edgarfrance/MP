@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { CheckCircle2, AlertTriangle, MapPin, FileText, Check } from 'lucide-react';
-import { NOUVELLE_AQUITAINE_DEPTS } from '../data/offers';
+import { AQUITAINE_DEPTS } from '../data/offers';
 
 interface CASimulatorProps {
   brandColor?: string;
@@ -15,15 +15,15 @@ export const CASimulator: React.FC<CASimulatorProps> = ({ brandColor = '#007D8A'
   const mobilityBonus = hasMobility ? 50 : 0;
   const totalBonus = baseBonus + mobilityBonus;
 
-  // Check if postal code is in Nouvelle-Aquitaine
+  // Check if postal code is in Aquitaine
   const enteredPrefix = postalCodeInput.trim().slice(0, 2);
-  const matchedDept = NOUVELLE_AQUITAINE_DEPTS.find((d) => d.code === enteredPrefix);
+  const matchedDept = AQUITAINE_DEPTS.find((d) => d.code === enteredPrefix);
   const isEligibleRegion = !!matchedDept;
 
   const handlePostalChange = (val: string) => {
     setPostalCodeInput(val);
     const prefix = val.trim().slice(0, 2);
-    const found = NOUVELLE_AQUITAINE_DEPTS.find((d) => d.code === prefix);
+    const found = AQUITAINE_DEPTS.find((d) => d.code === prefix);
     if (found) {
       setSelectedDept(found.code);
     }
@@ -40,10 +40,10 @@ export const CASimulator: React.FC<CASimulatorProps> = ({ brandColor = '#007D8A'
         <div>
           <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-teal-50 text-teal-800 mb-2">
             <MapPin className="w-3.5 h-3.5" />
-            Offre Territoriale Nouvelle-Aquitaine
+            Offre Territoriale Aquitaine
           </div>
           <h3 className="text-xl font-bold text-stone-900 tracking-tight">
-            Crédit Agricole : jusqu'à 100 € offerts
+            Crédit Agricole Aquitaine : jusqu'à 100 € offerts
           </h3>
           <p className="text-sm text-stone-500 mt-1">
             50 € versés instantanément sans dépôt + 50 € supplémentaires avec la mobilité bancaire.
@@ -67,7 +67,7 @@ export const CASimulator: React.FC<CASimulatorProps> = ({ brandColor = '#007D8A'
         {/* Region Verification Tool */}
         <div className="bg-stone-50 border border-stone-200 rounded-xl p-5">
           <label className="block text-xs font-bold uppercase tracking-wider text-stone-600 mb-2">
-            1. Testez votre éligibilité géographique (Nouvelle-Aquitaine requise)
+            1. Testez votre éligibilité géographique (Aquitaine requise)
           </label>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
@@ -78,18 +78,18 @@ export const CASimulator: React.FC<CASimulatorProps> = ({ brandColor = '#007D8A'
                 maxLength={5}
                 value={postalCodeInput}
                 onChange={(e) => handlePostalChange(e.target.value)}
-                placeholder="Ex : 33000, 64000, 17000..."
+                placeholder="Ex : 33000, 40000, 47000..."
                 className="w-full px-3.5 py-2.5 bg-white border border-stone-300 rounded-lg text-sm font-num text-stone-900 focus:outline-hidden focus:border-teal-600"
               />
             </div>
             <div>
-              <span className="text-xs text-stone-500 block mb-1">Ou choisissez le département :</span>
+              <span className="text-xs text-stone-500 block mb-1">Ou choisissez votre département :</span>
               <select
                 value={selectedDept}
                 onChange={(e) => handleDeptSelect(e.target.value)}
                 className="w-full px-3.5 py-2.5 bg-white border border-stone-300 rounded-lg text-sm text-stone-900 focus:outline-hidden focus:border-teal-600"
               >
-                {NOUVELLE_AQUITAINE_DEPTS.map((d) => (
+                {AQUITAINE_DEPTS.map((d) => (
                   <option key={d.code} value={d.code}>
                     {d.code} — {d.name} ({d.prefecture})
                   </option>
@@ -102,14 +102,14 @@ export const CASimulator: React.FC<CASimulatorProps> = ({ brandColor = '#007D8A'
             <div className="p-3 bg-teal-50 border border-teal-200 rounded-lg flex items-center gap-2.5 text-xs text-teal-900">
               <CheckCircle2 className="w-4 h-4 text-teal-700 shrink-0" />
               <span>
-                <strong>Éligible !</strong> Le département <strong>{matchedDept?.name} ({matchedDept?.code})</strong> fait bien partie du Crédit Agricole Nouvelle-Aquitaine.
+                <strong>Éligible !</strong> Le département <strong>{matchedDept?.name} ({matchedDept?.code})</strong> fait bien partie de la région Aquitaine ({matchedDept?.prefecture}).
               </span>
             </div>
           ) : (
             <div className="p-3 bg-amber-50 border border-amber-200 rounded-lg flex items-center gap-2.5 text-xs text-amber-900">
               <AlertTriangle className="w-4 h-4 text-amber-600 shrink-0" />
               <span>
-                Attention : Cette offre spécifique est réservée aux habitants de Nouvelle-Aquitaine (départements 16, 17, 19, 23, 24, 33, 40, 47, 64, 79, 86, 87).
+                Attention : Cette offre spécifique est réservée aux résidents d'Aquitaine (départements 33, 40, 47, 24, 64).
               </span>
             </div>
           )}
@@ -172,7 +172,7 @@ export const CASimulator: React.FC<CASimulatorProps> = ({ brandColor = '#007D8A'
         <div className="flex items-start gap-2.5 p-3.5 bg-stone-50 border border-stone-200 rounded-lg text-xs text-stone-600">
           <FileText className="w-4 h-4 text-stone-400 shrink-0 mt-0.5" />
           <div>
-            <strong>Justificatif obligatoire demandé :</strong> Un justificatif de domicile de moins de 3 mois (facture d'eau/électricité, avis d'impôt ou quittance) attestant de votre résidence en Nouvelle-Aquitaine.
+            <strong>Justificatif obligatoire demandé :</strong> Un justificatif de domicile de moins de 3 mois (facture d'eau/électricité, avis d'impôt ou quittance) attestant de votre résidence en Aquitaine.
           </div>
         </div>
       </div>

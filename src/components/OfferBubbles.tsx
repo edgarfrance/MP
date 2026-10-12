@@ -49,7 +49,7 @@ export const OfferBubbles: React.FC<OfferBubblesProps> = ({
                       color: offer.theme.textPrimary,
                     }}
                   >
-                    {offer.id === 'credit-agricole' ? 'Nouvelle-Aquitaine' : 'Banque en ligne'}
+                    {offer.id === 'credit-agricole' ? 'Aquitaine' : offer.id === 'sg' ? 'En ligne & Agence' : 'Banque en ligne'}
                   </span>
                 </div>
 

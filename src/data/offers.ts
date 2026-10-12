@@ -151,25 +151,27 @@ export const BANK_OFFERS: BankOffer[] = [
     keyPoints: [
       'Aucun dépôt obligatoire à l\'ouverture du compte',
       '50€ versés directement dès la condition remplie',
+      'Souscription 100% en ligne (plus simple) ou directement en agence SG',
       'Condition ultra simple : 5 paiements par carte en 3 mois (même 1 centime !)',
-      'Réseau d\'agences physiques partout en France + appli mobile complète'
+      'Grand réseau d\'agences physiques partout en France + appli mobile'
     ],
     payoutDelay: 'Versé directement sur le compte après exécution des 5 paiements',
     requirements: [
       'Être majeur et ne pas être déjà client de la SG',
+      'Ouverture possible en ligne (recommandé pour la rapidité) ou en agence physique SG',
       'Réaliser 5 paiements par carte dans les 90 jours (recharges Amazon, boulangerie, horodateur...)',
       'Pas de montant minimum de dépense imposé'
     ],
     steps: [
       {
         number: 1,
-        title: 'Souscription en ligne SG',
-        desc: 'Ouvrez un compte en ligne en renseignant vos informations d\'identité.'
+        title: 'Souscription en ligne ou en agence',
+        desc: 'Ouvrez votre compte en 5 minutes en ligne (le plus simple et rapide), ou rendez-vous dans l\'agence SG la plus proche en transmettant votre code parrain.'
       },
       {
         number: 2,
-        title: 'Réception de votre carte',
-        desc: 'Recevez votre carte bancaire Visa chez vous ou activez-la sur Apple Pay / Google Pay.'
+        title: 'Réception ou retrait de votre carte',
+        desc: 'Recevez votre carte bancaire Visa par courrier ou récupérez-la en agence. Activez-la sur Apple Pay ou Google Pay.'
       },
       {
         number: 3,
@@ -187,11 +189,11 @@ export const BANK_OFFERS: BankOffer[] = [
   },
   {
     id: 'credit-agricole',
-    name: 'Crédit Agricole (Nouvelle-Aquitaine)',
+    name: 'Crédit Agricole (Aquitaine)',
     shortName: 'Crédit Agricole',
     slug: 'credit-agricole',
     tagline: '50€ sans dépôt + 50€ avec mobilité bancaire',
-    badge: 'Régional NA • Jusqu\'à 100€',
+    badge: 'Aquitaine • Jusqu\'à 100€',
     maxBonus: 100,
     minDepositRequired: 0,
     highlightText: '50€ instantanés sans versement + 50€ si transfert bancaire',
@@ -209,40 +211,40 @@ export const BANK_OFFERS: BankOffer[] = [
     keyPoints: [
       '50€ offerts sans aucun dépôt préalable, versés instantanément',
       '+50€ additionnels si vous réalisez la mobilité bancaire',
-      'Réservé exclusivement aux résidents de Nouvelle-Aquitaine',
-      'Justificatif de domicile obligatoire dans l\'un des 12 départements de la région'
+      'Réservé exclusivement aux résidents d\'Aquitaine',
+      'Justificatif de domicile obligatoire en Aquitaine'
     ],
     mobilityBonus: 50,
     payoutDelay: '50€ versés instantanément à l\'ouverture + 50€ après transfert',
     requirements: [
-      'Habiter obligatoirement en région Nouvelle-Aquitaine (départements 16, 17, 19, 23, 24, 33, 40, 47, 64, 79, 86, 87)',
+      'Habiter obligatoirement en région Aquitaine (Gironde 33, Landes 40, Lot-et-Garonne 47, Dordogne 24, Pyrénées-Atlantiques 64)',
       'Fournir un justificatif de domicile valide de moins de 3 mois',
       'Être une personne physique majeure résidente'
     ],
     steps: [
       {
         number: 1,
-        title: 'Vérifiez votre éligibilité géographique',
-        desc: 'Assurez-vous de résider dans l\'un des 12 départements de Nouvelle-Aquitaine.'
+        title: 'Vérifiez votre éligibilité territoriale',
+        desc: 'Assurez-vous de résider en Aquitaine (Gironde, Landes, Lot-et-Garonne, Dordogne, Pyrénées-Atlantiques).'
       },
       {
         number: 2,
         title: 'Ouverture de compte en ligne',
-        desc: 'Initiez l\'ouverture auprès de la caisse régionale Crédit Agricole Aquitaine / Charente-Périgord / Pyrénées Gascogne.'
+        desc: 'Initiez l\'ouverture auprès du Crédit Agricole d\'Aquitaine en fournissant votre justificatif de domicile.'
       },
       {
         number: 3,
         title: 'Versement instantané des 50€',
-        desc: 'Dès que le dossier est validé, les 50€ sont crédités immédiatement sans versement.'
+        desc: 'Dès que le dossier est validé, les 50€ sont crédités immédiatement sans aucun versement initial requis.'
       },
       {
         number: 4,
         title: 'Mobilité bancaire (+50€ bonus)',
-        desc: 'Activez le service de changement de banque pour encaisser 50€ supplémentaires.'
+        desc: 'Activez le service d\'aide à la mobilité bancaire pour encaisser 50€ supplémentaires.'
       }
     ],
-    defaultReferralCode: 'MPCA100NA',
-    officialSiteUrl: 'https://www.credit-agricole.fr'
+    defaultReferralCode: 'MPCA100AQ',
+    officialSiteUrl: 'https://www.credit-agricole.fr/ca-aquitaine/particulier.html'
   },
   {
     id: 'fortuneo',
@@ -329,17 +331,10 @@ export const BANK_OFFERS: BankOffer[] = [
   }
 ];
 
-export const NOUVELLE_AQUITAINE_DEPTS = [
-  { code: '16', name: 'Charente', prefecture: 'Angoulême' },
-  { code: '17', name: 'Charente-Maritime', prefecture: 'La Rochelle' },
-  { code: '19', name: 'Corrèze', prefecture: 'Tulle' },
-  { code: '23', name: 'Creuse', prefecture: 'Guéret' },
-  { code: '24', name: 'Dordogne', prefecture: 'Périgueux' },
-  { code: '33', name: 'Gironde', prefecture: 'Bordeaux' },
-  { code: '40', name: 'Landes', prefecture: 'Mont-de-Marsan' },
-  { code: '47', name: 'Lot-et-Garonne', prefecture: 'Agen' },
-  { code: '64', name: 'Pyrénées-Atlantiques', prefecture: 'Pau / Bayonne' },
-  { code: '79', name: 'Deux-Sèvres', prefecture: 'Niort' },
-  { code: '86', name: 'Vienne', prefecture: 'Poitiers' },
-  { code: '87', name: 'Haute-Vienne', prefecture: 'Limoges' }
+export const AQUITAINE_DEPTS = [
+  { code: '33', name: 'Gironde', prefecture: 'Bordeaux (CA d\'Aquitaine)' },
+  { code: '40', name: 'Landes', prefecture: 'Mont-de-Marsan / Dax (CA d\'Aquitaine)' },
+  { code: '47', name: 'Lot-et-Garonne', prefecture: 'Agen (CA d\'Aquitaine)' },
+  { code: '24', name: 'Dordogne', prefecture: 'Périgueux (CA Charente-Périgord)' },
+  { code: '64', name: 'Pyrénées-Atlantiques', prefecture: 'Pau / Bayonne (CA Pyrénées Gascogne)' }
 ];

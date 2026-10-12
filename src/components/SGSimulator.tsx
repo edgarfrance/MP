@@ -57,12 +57,17 @@ export const SGSimulator: React.FC<SGSimulatorProps> = ({ brandColor = '#E2001A'
       </div>
 
       <div className="mt-8 space-y-6">
-        {/* Comparison card: 0€ locked */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        {/* Comparison card: 0€ locked & Online / Agency flexibility */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           <div className="bg-stone-50 border border-stone-200 rounded-xl p-4">
             <span className="text-xs font-semibold text-stone-500 uppercase">Dépôt initial demandé</span>
             <div className="text-2xl font-bold text-stone-900 mt-1 font-num">0 €</div>
             <p className="text-xs text-stone-500 mt-1">Pas besoin d'avancer d'argent pour ouvrir le compte.</p>
+          </div>
+          <div className="bg-stone-50 border border-stone-200 rounded-xl p-4">
+            <span className="text-xs font-semibold text-stone-500 uppercase">Mode de souscription</span>
+            <div className="text-base font-bold text-stone-900 mt-1">En ligne ou En agence</div>
+            <p className="text-xs text-stone-500 mt-1">Plus simple et rapide en ligne (5 min), mais également possible en agence SG physique.</p>
           </div>
           <div className="bg-stone-50 border border-stone-200 rounded-xl p-4">
             <span className="text-xs font-semibold text-stone-500 uppercase">Période pour les 5 paiements</span>

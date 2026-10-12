@@ -46,7 +46,7 @@ export const Footer: React.FC<FooterProps> = ({ onGoHome, onOpenBank }) => {
               onClick={() => onOpenBank('credit-agricole')}
               className="text-stone-600 hover:text-stone-900 transition-colors"
             >
-              Parrainage Crédit Agricole NA
+              Parrainage Crédit Agricole Aquitaine
             </button>
             <button
               type="button"
