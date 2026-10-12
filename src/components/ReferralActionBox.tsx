@@ -21,6 +21,7 @@ interface ReferralActionBoxProps {
 export const ReferralActionBox: React.FC<ReferralActionBoxProps> = ({ offer }) => {
   const [copiedCode, setCopiedCode] = useState<boolean>(false);
   const [copiedPhone, setCopiedPhone] = useState<boolean>(false);
+  const [copiedEmail, setCopiedEmail] = useState<boolean>(false);
   const [customCode, setCustomCode] = useState<string>(offer.defaultReferralCode || 'PARRAIN2026');
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
@@ -43,6 +44,12 @@ export const ReferralActionBox: React.FC<ReferralActionBoxProps> = ({ offer }) =
     navigator.clipboard.writeText(contactPhone);
     setCopiedPhone(true);
     setTimeout(() => setCopiedPhone(false), 2200);
+  };
+
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText(contactEmail);
+    setCopiedEmail(true);
+    setTimeout(() => setCopiedEmail(false), 2200);
   };
 
   return (
@@ -114,7 +121,7 @@ export const ReferralActionBox: React.FC<ReferralActionBoxProps> = ({ offer }) =
               </a>
             </div>
 
-            {/* Direct Contact Phone & Email Display */}
+            {/* Direct Contact Phone Display */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 p-3.5 bg-stone-50/70 border border-stone-200 rounded-xl text-xs">
               <div className="flex items-center gap-2 text-stone-700">
                 <Phone className="w-4 h-4 text-stone-400 shrink-0" />
@@ -129,8 +136,23 @@ export const ReferralActionBox: React.FC<ReferralActionBoxProps> = ({ offer }) =
               </button>
             </div>
 
+            {/* Direct Contact Email Display */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 p-3.5 bg-stone-50/70 border border-stone-200 rounded-xl text-xs">
+              <div className="flex items-center gap-2 text-stone-700">
+                <Mail className="w-4 h-4 text-stone-400 shrink-0" />
+                <span>E-mail direct : <strong>{contactEmail}</strong></span>
+              </div>
+              <button
+                type="button"
+                onClick={handleCopyEmail}
+                className="text-stone-600 hover:text-stone-900 font-semibold underline text-left sm:text-right cursor-pointer"
+              >
+                {copiedEmail ? 'E-mail copié !' : 'Copier l\'e-mail'}
+              </button>
+            </div>
+
             <p className="text-[11px] text-stone-500 text-center pt-1 italic">
-              Le code personnalisé et le lien vous seront envoyés directement par SMS ou WhatsApp en moins de 5 minutes.
+              Le code personnalisé et le lien vous seront envoyés directement par SMS, WhatsApp ou Email en moins de 5 minutes.
             </p>
           </div>
         ) : (
