@@ -164,7 +164,6 @@ export const BANK_OFFERS: BankOffer[] = [
     keyPoints: [
       'Aucun dépôt obligatoire à l\'ouverture du compte',
       '50€ versés directement dès la condition remplie',
-      'Code à usage unique transmis gratuitement par SMS/WhatsApp/Mail',
       'Souscription 100% en ligne (plus simple) ou directement en agence SG',
       'Condition ultra simple : 5 paiements par carte en 3 mois (même 1 centime !)',
       'Grand réseau d\'agences physiques partout en France + appli mobile'
@@ -233,7 +232,6 @@ export const BANK_OFFERS: BankOffer[] = [
     keyPoints: [
       '50€ offerts sans aucun dépôt préalable, versés instantanément',
       '+50€ additionnels si vous réalisez la mobilité bancaire',
-      'Code à usage unique transmis gratuitement par SMS/WhatsApp/Mail',
       'Réservé exclusivement aux résidents d\'Aquitaine',
       'Justificatif de domicile obligatoire en Aquitaine'
     ],
